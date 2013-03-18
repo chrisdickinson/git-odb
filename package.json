@@ -1,0 +1,22 @@
+{
+  "name": "git-odb",
+  "version": "0.0.0",
+  "description": "object database manager for git",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chrisdickinson/git-odb.git"
+  },
+  "keywords": [
+    "git",
+    "object",
+    "database",
+    "odb"
+  ],
+  "author": "Chris Dickinson <chris@neversaw.us>",
+  "license": "MIT",
+  "gitHead": "aa35323ac8f8f5e9948a36bfc14b282b0c6c153a"
+}
