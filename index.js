@@ -39,34 +39,30 @@ proto.remove = function(backend) {
 }
 
 proto.find = function(sha, ready) {
-  var found = false
-    , pending = this._read_backends.length
+  var pending = this._read_backends.length
+    , backends = this._read_backends
+    , idx = 0
 
-  for(var i = 0, len = this._read_backends.length; !found && i < len; ++i) {
-    this._read_backends[i].read(sha, gotsha)
-  }
+  return iter()
 
-  return this
-
-  function gotsha(err, data) {
-    --pending
-    if(found) {
-      return
+  function iter() {
+    if(idx === pending) {
+      return ready(null)
     }
 
+    backends[idx++].read(sha, got)
+  }
+
+  function got(err, data) {
     if(err) {
-      found = true
       return ready(err)
     }
 
     if(data) {
-      found = true
       return ready(null, data)
     }
 
-    if(!pending) {
-      return ready(null)
-    }
+    return iter()
   }
 }
 
